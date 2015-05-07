@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ex1</title>
+    <script>
+    onload = function() {
+        var container = document.getElementById("container");
+        var items = document.querySelectorAll(".number");
+
+        for (var i = 0; i < items.length; i++) {
+            console.log(items[i].innerText);
+            items[i].ondragstart = function(e) {
+                console.log("on drag start");
+                e.dataTransfer.setData("text", this.innerText);
+            }
+        }
+
+        container.ondragover = function(e) {
+            e.preventDefault();
+        }
+
+        container.ondrop = function(e) {
+            var number = e.dataTransfer.getData("text");
+            if (number % 2 == 0) {
+                alert('"' + number + '" is an even number, correct!');
+            } else {
+                alert('"' + number + '" is an odd number, incorrect!');
+            }
+        }
+    }
+    </script>
+    <style>
+    #container {
+        height: 100;
+        width: 400px;
+        background-color: pink;
+        border: solid;
+    }
+    
+    #container p {
+        text-align: center;
+        vertical-align: middle;
+    }
+    
+    .number {
+        display: inline-block;
+        width: 100px;
+        margin: 20px;
+        font-size: x-large;
+        text-decoration: none;
+        text-align: center;
+        background-color: green;
+        color: yellow;
+    }
+    </style>
+</head>
+
+<body>
+    <a class="number" href="#">1</a>
+    <a class="number" href="#">2</a>
+    <a class="number" href="#">5</a>
+    <a class="number" href="#">7</a>
+    <a class="number" href="#">8</a>
+    <a class="number" href="#">9</a>
+    <div id="container">
+        <p> Drop even number here </p>
+    </div>
+</body>
+
+</html>

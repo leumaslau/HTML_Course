@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ex.1</title>
+    <style type="text/css">
+    div {
+        font-size: 150%;
+        color: red;
+    }
+    </style>
+</head>
+
+<body>
+    <img src="images/doctor.jpg" data-job="Doctor" width="80px" height="80px" onclick="showJob(this)">
+    <img src="images/police.jpg" data-job="Police" width="80px" height="80px" onclick="showJob(this)">
+    <img src="images/nurse.jpg" data-job="Nurse" width="80px" height="80px" onclick="showJob(this)">
+    <img src="images/postman.jpg" data-job="Postman" width="80px" height="80px" onclick="showJob(this)">
+    <img src="images/sweeper.jpg" data-job="Sweeper" width="80px" height="80px" onclick="showJob(this)">
+    <div id="job_div"></div>
+    <script>
+    function showJob(element) {
+        var div = document.getElementById("job_div");
+        div.innerHTML = element.getAttribute("data-job");
+    }
+    </script>
+</body>
+
+</html>

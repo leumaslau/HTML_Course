@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ex2</title>
+    <script>
+    function init() {
+        var items = document.getElementsByClassName("object");
+        for (var i = 0; i < items.length; i++) {
+            obj = items.item(i);
+            obj.draggable = true;
+            obj.addEventListener('dragstart', function(e) {
+                e.dataTransfer.setData('text', this.id);
+            }, false);
+
+            obj.addEventListener('drop', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }, false);
+        };
+
+        var containers = document.getElementsByClassName("container");
+        for (var i = 0; i < containers.length; i++) {
+            container = containers.item(i);
+            container.addEventListener('dragover', function(e) {
+                e.preventDefault();
+            }, false);
+
+            container.addEventListener('drop', function(e) {
+                var sourceid = e.dataTransfer.getData('text');
+                var source = document.getElementById(sourceid);
+                e.target.appendChild(source);
+            }, false);
+        };
+    }
+    </script>
+    <style>
+    .container {
+        height: 500px;
+    }
+    
+    #container1 {
+        background-color: pink;
+        border-style: solid;
+        border-color: blue;
+    }
+    
+    #container2 {
+        background-color: orange;
+        border-style: solid;
+        border-color: blue;
+    }
+    
+    .object {
+        width: 128px;
+        height: 128px;
+        margin: 2px;
+    }
+    </style>
+</head>
+
+<body onload="init()">
+    <div class="container" id="container1">
+        <img id='button' class='object' src="images/button.jpg" alt="">
+        <img id='cloth' class='object' src="images/cloth.jpg" alt="">
+        <img id='doctor' class='object' src="images/doctor.jpg" alt="">
+        <img id='dress' class='object' src="images/dress.jpg" alt="">
+        <img id='nurse' class='object' src="images/nurse.jpg" alt="">
+        <img id='police' class='object' src="images/police.jpg" alt="">
+        <img id='postman' class='object' src="images/postman.jpg" alt="">
+        <img id='rain' class='object' src="images/rain.jpg" alt="">
+        <img id='raincloth' class='object' src="images/raincloth.jpg" alt="">
+        <img id='shirt' class='object' src="images/shirt.jpg" alt="">
+        <img id='sweeper' class='object' src="images/sweeper.jpg" alt="">
+        <img id='trouser' class='object' src="images/trouser.jpg" alt="">
+        <img id='water' class='object' src="images/water.jpg" alt="">
+    </div>
+    <hr>
+    <div class="container" id="container2">
+    </div>
+</body>
+
+</html>
